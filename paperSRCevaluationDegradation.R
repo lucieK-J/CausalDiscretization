@@ -638,5 +638,5 @@ degradation.etude.edge <- function(EXP, nbaddBound  = 10, alpha, seed.degr = 1, 
 }
 
 
-# degradation.etude.edge(EXP, nbaddBound  = nbaddBound, alpha, seed.degr = 1, test = "Mutual.Information.test", param)
+degradation.etude.edge(EXP, nbaddBound  = nbaddBound, alpha, seed.degr = 1, test = "Mutual.Information.test", param)
 
