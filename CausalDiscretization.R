@@ -1,10 +1,9 @@
 
 
-source("CausalRelievenceScore.R")
+source("CausalRelivanceScore.R")
 require(arules)
 require(stringr)
 options(encoding = "latin1") 
-source(file = "STUCCO.R")
 library(tidyr)
 
 

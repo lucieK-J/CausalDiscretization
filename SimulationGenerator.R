@@ -231,7 +231,7 @@ simulation <- function(structure, n, seed){
       
       
       leftones = which(is.na(unlist(DATA[[node]])))
-      =
+      
       
       DATA[[node]][leftones] = runif(length(leftones), min = 0, 1)
     }
@@ -271,3 +271,4 @@ simulation <- function(structure, n, seed){
               SEP = SEP, ADJ = ADJ, myDAG = myDAG, NameVars = NameVars, DATA = DATA, dm = dm, nlev = nlev,
               RULES = RULES, neT = neT, SUPPORT = SUPPORT))
 }
+

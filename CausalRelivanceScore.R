@@ -135,3 +135,4 @@ compute.score <- function(u, alpha, ns){
   res$ne = dim(ab)[1] 
   return(res)
 }
+

@@ -1,0 +1,9 @@
+"","TP","TN","time"
+"baselines gaussCItest",0.5,1,0.0007999999999877
+"baselines kci.test",0.5,1,0.521800000000004
+"eqFreq pSCCI",0.25,1,0.000799999999998136
+"eqFreq Mutual.Information.test",0.25,1,0.00139999999999958
+"causal_discretization pSCCI",0.25,1,8.9519
+"causal_discretization Mutual.Information.test",0.75,1,9.37409999999999
+"optimal pSCCI",1,1,0.00129999999999058
+"optimal Mutual.Information.test",1,1,0.00219999999999629

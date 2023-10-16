@@ -1,11 +1,13 @@
 
 
-setwd("~/CausalDiscretization")
+
+
 source(file="tests_for_conditionnalInd.R")
 source(file = "SimulationGenerator.R")
-source("CausalRelievenceScore.R")
+source("CausalRelivanceScore.R")
 source(file = "usefulFunctions.R")
-source(file = "C3POdiscretization.R")
+source(file = "CausalDiscretization.R")
+
 
 n = 200
 
@@ -17,7 +19,8 @@ alpha = 0.01
 
 nInits = 30
 
-N = 100 # number of simulations
+N = 500 # number of simulations
+
 esp = 0.0001
 
 tests = c("gaussCItest", "kci.test", "pSCCI", "Mutual.Information.test")
@@ -364,7 +367,7 @@ tableauResum <- function(N, param, tests){
 # _________________________________________________ GENERATION START
 
 
-for (structure in c( "chain","fork", "vstructure", "mediator" )){
+for (structure in structures){
   param = c(structure,n, alpha, nInits, m, esp) # attention : order is important
   generation.N.sim(N, param, tests, display = F)
   
@@ -386,7 +389,7 @@ k = 1
 for (structure in structures){
   param = c(structure,n, alpha, nInits, m, esp)  # attention : order is important
   names(param) = c("structure","n", "alpha", "nInits", "m", "esp")
-  fileToread = paste0('results/comparaison/niceResults', N, paste0(param, collapse = "_") )
+  fileToread = paste0('results/comparaison/Results', N, paste0(param, collapse = "_") )
   niceResults = read.csv(file =  fileToread)
   rowNames = niceResults$X
   niceResults$X  = NULL

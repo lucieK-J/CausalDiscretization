@@ -13,16 +13,15 @@ structure = "vstructure"; seed = 38; n = 100; nbaddBound = 60 # paper
 param = c(structure,n, seed, alpha)
 
 
-source(file = "C3POdiscretization.R")
+source(file = "CausalDiscretization.R")
 source(file = "SimulationGenerator.R")
 source(file = "usefulFunctions.R")
 source(file = "tests_for_conditionnalInd.R")
 require(arules)
 require(stringr)
-source(file = "STUCCO.R")
 library(igraph)
 library(RColorBrewer)
-library(tidyr) # pour extract_numeric
+library(tidyr) # for extract_numeric
 library(SCCI)
 library(bnlearn)
 library(sna)
@@ -403,9 +402,9 @@ degradation <- function(EXP, nbaddBound  = 10, alpha, seed.degr = 1, param){
     
     
     Graphes_interessants = 1:length(RANGEG)
-    for (g in Graphes_interessants){
-      plot(RANGEG[[g]][[test]]$plot, main = names(RANGEG)[g]) 
-    }
+    #for (g in Graphes_interessants){
+    #  plot(RANGEG[[g]][[test]]$plot, main = names(RANGEG)[g]) 
+    #}
     
     
     

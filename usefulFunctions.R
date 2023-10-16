@@ -35,64 +35,13 @@ barDiagAndDiscret <- function(data, mapping, output = output...) {
   print(mapping) 
   X = eval_data_col(data, mapping$x)
   print(X)
-  # Aesthetic mapping: 
-  #   * `x`      -> `Laser.Power`
-  # * `y`      -> `Laser.Spot.Diameter`
-  # * `colour` -> `dataframe$factor.Relative.Density.`
-  
-  # print(str(mapping)) 
-  # List of 3
-  # $ x     : language ~Laser.Power
-  # ..- attr(*, ".Environment")=<environment: 0x0000012973a49268> 
-  #   $ y     : language ~Laser.Spot.Diameter
-  # ..- attr(*, ".Environment")=<environment: 0x0000012973a49268> 
-  #   $ colour: language ~dataframe$factor.Relative.Density.
-  # ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-  #   - attr(*, "class")= chr "uneval"
-  # NULL
-  
-  # print(mapping$colour)
-  # print(mapping$x) 
-  # <quosure>
-  #   expr: ^Laser.Power
-  # env:  0x0000012901b3de58
-  
-  # print(as.character(mapping)) Petal.Width" "~Species"
-  
-  # print(as.character(mapping))
-  # [1] "~Laser.Power"                       
-  # [2] "~Laser.Spot.Diameter"               
-  # [3] "~dataframe$factor.Relative.Density."
-  # temp = as.character(mapping[c(1,2)])
-  # temp[1] = sub('.', '', temp[1])
-  # temp[2] = sub('.', '', temp[2])
-  # print( temp)
-  # print(data[,temp]) CA MARCHE !!!!
-  
-  
-  # print(data$mapping$x) affiche NULL (avec ou sans le x)
-  # print(mapping$x(data)) batsu
-  # print(data[,mapping$x]) batsu
-  # print(data[mapping$x]) batsu
-  # print(data[mapping])  batsu
+
   
   discr = mdlp(cbind(X, output))
-  # print(colnames(data))
-  # cuts = list(135, "All")
-  # cuts = list(135, 35.04)
   cuts = discr$cutp
   print(cuts)
-  # print(cuts)
-  # p <- ggplot(data = data, mapping = mapping) +
-  #   geom_point(aes(colour = factor(output)))
-  # p <- ggplot(data, mapping) + 
-  #   geom_bar(stat = "count",
-  #     position = "stack")
   p <- ggplot(data, mapping) + geom_histogram(alpha=0.5)
-  
-  # p <- ggplot(data = data, mapping = mapping)
-  
-  
+
   if (cuts != "All"){
     p <- p +
       geom_vline(xintercept = cuts[[1]])
@@ -103,9 +52,9 @@ barDiagAndDiscret <- function(data, mapping, output = output...) {
 
 
 reformate <- function(ADJ, sortiePC){
-  # cette fonction uniformise les objets ADJ et sortiePC
-  # ADJ condient toutes les variables possible mais sortie PC peut avoir des suppression 
-  # il s'agit ici de completer avec des colonne vide. 
+  # this function standardizes ADJ and PC output objects
+  # ADJ contains all possible variables but PC output may have deletions 
+  # it's a matter of completing with empty columns. 
   dat1=as(sortiePC, "amat")
   # ref = paste0("V", colnames(ADJ))
   ref = colnames(ADJ)
@@ -127,10 +76,11 @@ reformate <- function(ADJ, sortiePC){
 
 
 reformate2 <- function(ADJ, sortiePC, autreMat){
-  # cette fonction uniformise les objets ADJ et sortiePC
-  # la vesion 2 permet de convertir aussi des matrice comme pvals 
-  # ADJ condient toutes les variables possible mais sortie PC peut avoir des suppression 
-  # il s'agit ici de completer avec des colonne vide. 
+  # this function standardizes ADJ and outputPC objects
+  # vesion 2 also converts matrices such as pvals 
+  # ADJ contains all possible variables but PC output can have deletions
+  # here, it's a matter of completing with empty columns.
+  
   dat1=as(sortiePC, "amat")
   
   ref = colnames(ADJ)
@@ -155,7 +105,6 @@ reformate2 <- function(ADJ, sortiePC, autreMat){
 
 evaluation <-function(ADJ, sortiePC){
   
-  # sortiePC = pc.fit
   
   d = dim(ADJ)[1]
   
@@ -194,7 +143,7 @@ evaluation <-function(ADJ, sortiePC){
   
   trueNeg = trulyAbsentANDErased / trueAbsent
   
-  # truePos et trueNeg (en terme de squelette)
+
   
   dat2Sqlt =  ADJSqlt = matrix(0, dim(ADJ)[1], dim(ADJ)[2])
   for (i in 1:dim(ADJSqlt)[1]){
@@ -224,7 +173,7 @@ evaluation <-function(ADJ, sortiePC){
       }
       
       if ( (!true1)&(!pred1) ){
-        # cat(paste0(i, " et ", j, "\n"))
+        
         trulyAbsentANDErasedSqlt = trulyAbsentANDErasedSqlt + 1
       }
       
@@ -275,7 +224,6 @@ mod.pc <-function(...){
   arguments$labels = labels2
   arguments$suffStat$nlev = nlev2
   
-  # si on a qu'une seule variable non constante alors c'est comme si elle l'?taient toutes
   
   if (length(arguments$suffStat$nlev)<2){
     ADJ0 = matrix(data = 0, length(nlevInput), length(nlevInput))

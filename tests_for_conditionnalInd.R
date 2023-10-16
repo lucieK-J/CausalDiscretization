@@ -35,11 +35,7 @@ Jonckheere.Terpstra.test <- function(x, y, S, suffStat){
   for (v in 1:dim(dm)[2]){
     dm[, v] = as.ordered(dm[, v])
   }
-  
-  # cat(paste("mon message : S =  ", S, " !"))
-  # cat(paste("S est null ? :  ", is.null(S), " !"))
-  # cat(paste("str(S) ? ", str(S) , " !"))
-  
+
   
   if (length(S) == 0){
     p = bnlearn::ci.test(x = dm[,x] , y = dm[,y],  test = "jt" )$p.value
